@@ -73,7 +73,7 @@ namespace DotnetCoreApi.FileUpload.Controllers
         [HttpPost("using/model/complex")]
         public async Task<IActionResult> ComplexUpload([FromForm] ComplexFileUploadModel model)
         {
-            if (model.Files == null || model.Files.Count == 0)
+            if (model.Files == null || model.Files.Count == 0 || !model.Files.Any(d => d.Somefile != null))
                 return BadRequest("Uploading file is not provided");
 
             var fileUploadTasks = new List<Task<FileUploadResult>>();
